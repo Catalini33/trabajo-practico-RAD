@@ -1,0 +1,33 @@
+{
+    "id": "AA68CFC3",
+    "path": null,
+    "project_path": null,
+    "type": "quarto_markdown",
+    "hash": "0",
+    "contents": "",
+    "dirty": true,
+    "created": 1744933541577.0,
+    "source_on_save": false,
+    "relative_order": 5,
+    "properties": {
+        "rmdVisualMode": "true",
+        "rmdVisualWrapConfigured": "true",
+        "tempName": "Untitled2",
+        "source_window_id": "",
+        "Source": "Source",
+        "docOutlineVisible": "0",
+        "rmdVisualCollapsedChunks": "",
+        "cursorPosition": "83,0",
+        "scrollLine": "33",
+        "rmdVisualModeLocation": "4326:2800",
+        "docOutlineSize": "5"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 115964116996,
+    "encoding": "",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1744953434050,
+    "read_only": false,
+    "read_only_alternatives": []
+}

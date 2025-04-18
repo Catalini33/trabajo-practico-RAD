@@ -1,0 +1,6 @@
+"0","graph<-sjPlot::plot_stackfrq(dplyr::select(proc_data_2022,                Grad_acu_est_bien,                                                 Grad_acu_just_edu,                                                                 Grad_acu_just_sal,                                                                 Just_dif_clas_soc,                                                                 Trat_just_clase_med),                                                               title:""grafico""                                                           
+"
+"2","Error: unexpected symbol in:
+""
+graph""
+"
