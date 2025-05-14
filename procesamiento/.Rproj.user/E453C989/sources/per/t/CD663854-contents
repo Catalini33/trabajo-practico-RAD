@@ -1,0 +1,97 @@
+---
+title: "TrabajoR"
+author: "Catalina Rojas y Matías Villanueva"
+format: html
+editor: visual
+---
+
+## Titulo del trabajo
+
+Introduccion 500 palabras más citas <https://quarto.org>.
+
+## Running Code
+
+Descarga de paquetes a utilizar para nuestro trabajo
+
+```{r}
+library(pacman)
+pacman::p_load(tidyverse,  
+               car,
+               stargazer,
+               sjlabelled,
+               sjPlot,      
+               confintr,    
+               gginference,  
+               rempsyc,     
+               broom,       
+               sjmisc,      
+               dplyr,
+               knitr,                                                                             ggplot2,                                                                           kableExtra) 
+```
+
+Descarga de base de datos\
+\
+La base de datos que utilizaremos corresponde a la "Encuesta Longuitunidal Social de Chile" que fue realizada por el COES
+
+```{r}
+load(url("https://dataverse.harvard.edu/api/access/datafile/7245118"))
+```
+
+```{r}
+proc_data_2022 <- elsoc_long_2016_2022.2 %>% filter(ola=="6") %>%           select(Grad_acu_est_bien=c40_01,                                                   Grad_acu_just_edu=d02_02,                                                    Grad_acu_just_sal=d02_03,                                                   Just_dif_clas_soc=d19,                                                       Trat_just_clase_med=d25_02)                                    
+```
+
+Se eliminan datos perdidos correspondientes a NS/NR (No sabe/No responde) y estan numeradas como -999 -888 y -777
+
+```{r}
+proc_data_2022 <- proc_data_2022 %>% sjlabelled::set_na(.,na= c(-999,  -888 , -777))
+```
+
+Procedemos a guardar nuestra sub-base de datos obtenida en la carpeta imput\
+
+```{r}
+save(proc_data_2022, file = "C:\ Users\ enigm\ Documents\ UAH\ trabajo-practico-RAD\ input\ proc_data_2022.RData")
+```
+
+## Se le asignan etiquetas a las variables
+
+```{r}
+ proc_data_2022$Grad_acu_est_bien <-set_label(x =proc_data_2022$Grad_acu_est_bien, label = "Grado de acuerdo:Estado trabaja por bienestar de personas")                                                                                                   proc_data_2022$Grad_acu_just_edu <-set_label(x = proc_data_2022$Grad_acu_just_edu, label = "Grado de acuerdo:Justicia destributiva en educacion")                                                                                                         proc_data_2022$Grad_acu_just_sal <-set_label(x = proc_data_2022$Grad_acu_just_sal,label = "Grado de acuerdo:Justicia destributiva en salud" )                                                                            proc_data_2022$Just_dif_clas_soc <-set_label(x =proc_data_2022$Just_dif_clas_soc,label = "Justificacion de diferencias entre clases")                                                                                                                  proc_data_2022$Trat_just_clase_med <-set_label(x =proc_data_2022$Trat_just_clase_med,label = "Trato justo:personas de clase media")                                                                                     get_label(proc_data_2022$Grad_acu_est_bien)                                        get_label(proc_data_2022$Grad_acu_just_edu)                                        get_label(proc_data_2022$Grad_acu_just_sal)                                        get_label(proc_data_2022$Just_dif_clas_soc)                                        get_label(proc_data_2022$Trat_just_clase_med)
+```
+
+```{r}
+sjmisc::descr(proc_data_2022,                                                              show = c("label", "range","mean","sd","NA.prc", "n"))%>%                        kable(.,"markdown") %>%                                                            kable_styling(full_width = T) %>%                                                  scroll_box(width = "125%)
+```
+
+## Graficos de relación entre variable dependiente y algunas variables independientes
+
+```{r, fig.cap:"Plots"}
+plot_grpfrq(proc_data_2022$Grad_acu_est_bien , proc_data_2022$Grad_acu_just_edu)
+```
+
+```{r, fig.cap:"Plots"}
+plot_grpfrq(proc_data_2022$Grad_acu_est_bien , proc_data_2022$Just_dif_clas_soc)
+```
+
+```{r, fig.cap: "Plots"}
+plot_grpfrq(proc_data_2022$Grad_acu_est_bien , proc_data_2022$Grad_acu_just_sal)
+```
+
+```{r, fig.cap: "Plots"}
+plot_grpfrq(proc_data_2022$Grad_acu_est_bien,proc_data_2022$Trat_just_clase_med)
+```
+
+```         
+```
+
+## Graficos descriptivos de las variables
+
+```{r, fig-cap:"Plots"}
+graph<-sjPlot::plot_stackfrq(dplyr::select(proc_data_2022,Grad_acu_est_bien,                                                 Grad_acu_just_edu,                                                                 Grad_acu_just_sal,                                                                 Just_dif_clas_soc,                                                                 Trat_just_clase_med),                                                               title:"grafico"                                                           
+```
+
+```{r}
+
+```
+
+\

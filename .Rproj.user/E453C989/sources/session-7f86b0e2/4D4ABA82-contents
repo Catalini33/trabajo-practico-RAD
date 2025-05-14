@@ -1,2 +1,0 @@
-install.packages("librería")
-install.packages("pacman")
